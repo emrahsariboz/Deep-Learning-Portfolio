@@ -10,3 +10,22 @@ There are two main reasons I created this repository.
 
 
 # Perceptron
+
+# Common Problems in Neural Network
+
+## Overfitting and Underfitting
+
+Underfitting is trying to kill a Godzilla with a flyswatter. The problem is you are oversimplifying the problem. Overfitting, on the other hand, is trying to kill a fly with a bazooka. The problem here is, well, it is obvious. You are overcomplicating it!
+.
+.
+Another good example I saw today was not studying the exam and ultimately failing to be an example of underfitting while memorizing the book word by word rather than studying, is an example of overfitting. Either way, you will fail.
+
+### Solutions for underfitting
+
+#### Regularization 
+
+#### Dropout
+
+## Local Minimum
+
+## 
