@@ -20,7 +20,8 @@ class neural_network:
         
         self.weights_h_o = np.random.normal(0.0, self.hidden_nodes**-0.5,
                                             (self.hidden_nodes, self.output_nodes))
-    
+        
+        self.sigmoid_output_derivative = lambda x: (x * (1 - x))
 
     def train(self, features, target):
         
@@ -28,6 +29,9 @@ class neural_network:
             final_outputs, hidden_outputs = self.forward_pass(X)
         
         
+    def MSE(y, Y):
+        return np.mean((y-Y)**2)
+    
     
     def forward_pass(self, X):
         
@@ -45,4 +49,11 @@ class neural_network:
     def backpropagation(self, final_outputs, hidden_outputs, X, y, delta_weights_i_h, 
                         delta_weights_h_o):
         
-        error = 
+        error = self.MSE(y - final_outputs)
+        
+        output_error_term = np.dot(error, self.weights_h_o)
+        output_error_delta = output_error_term * self.sigmoid_output_derivative(error)
+        
+        hidden_error_term = np.dot(output_error_delta, self.weights_i_h)
+        hidden_error_delta = hidden_error_term * self.sigmoid_output_derivative(output_error_term)
+        
