@@ -25,9 +25,15 @@ class neural_network:
 
     def train(self, features, target):
         
+        n_records = features.shape[0]
+        delta_weights_i_h = np.zeros(self.weights_input_to_hidden.shape)
+        delta_weights_h_o = np.zeros(self.weights_hidden_to_output.shape)
+        
         for X, y in zip(features, target):
             final_outputs, hidden_outputs = self.forward_pass(X)
-        
+            delta_weights_i_h, delta_weights_h_o = self.backpropagation(final_outputs, hidden_outputs, X, y, 
+                                                                        delta_weights_i_h, delta_weights_h_o)
+        self.update_weights(delta_weights_i_h, delta_weights_h_o, n_records)
         
     def MSE(y, Y):
         return np.mean((y-Y)**2)
@@ -57,3 +63,31 @@ class neural_network:
         hidden_error_term = np.dot(output_error_delta, self.weights_i_h)
         hidden_error_delta = hidden_error_term * self.sigmoid_output_derivative(output_error_term)
         
+        delta_weights_h_o += np.dot(final_outputs, output_error_delta)
+        delta_weights_i_h += np.dot(hidden_outputs, hidden_error_delta)
+        
+        return delta_weights_i_h, delta_weights_h_o
+    
+    def update_weights(self,delta_weights_i_h, delta_weights_h_o, n_records ):
+        
+        self.weights_hidden_to_output += delta_weights_h_o * self.learning_rate 
+        self.weights_input_to_hidden += delta_weights_i_h * self.learning_rate 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
