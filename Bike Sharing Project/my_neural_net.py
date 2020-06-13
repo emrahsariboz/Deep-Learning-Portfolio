@@ -24,3 +24,25 @@ class neural_network:
 
     def train(self, features, target):
         
+        for X, y in zip(features, target):
+            final_outputs, hidden_outputs = self.forward_pass(X)
+        
+        
+    
+    def forward_pass(self, X):
+        
+        hidden_input= np.dot(X, self.weights_i_h)
+        hidden_output = self.acti_func(hidden_input)
+        
+        
+        #Output layer
+        
+        final_inputs = np.dot(hidden_output, self.weights_h_o)
+        final_outputs = self.acti_func(final_inputs)
+        
+        return final_outputs, hidden_output
+    
+    def backpropagation(self, final_outputs, hidden_outputs, X, y, delta_weights_i_h, 
+                        delta_weights_h_o):
+        
+        error = 
