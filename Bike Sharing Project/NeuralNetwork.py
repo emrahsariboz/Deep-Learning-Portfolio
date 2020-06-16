@@ -15,11 +15,12 @@ class neural_network:
         
      
         
-        self.weights_i_h = np.random.normal(0.0, self.input_nodes**-0.5, 
+        # Initialize weights
+        self.weights_input_to_hidden = np.random.normal(0.0, self.input_nodes**-0.5,
                                        (self.input_nodes, self.hidden_nodes))
-        
-        self.weights_h_o = np.random.normal(0.0, self.hidden_nodes**-0.5,
-                                            (self.hidden_nodes, self.output_nodes))
+
+        self.weights_hidden_to_output = np.random.normal(0.0, self.hidden_nodes**-0.5,
+                                       (self.hidden_nodes, self.output_nodes))
         
         self.sigmoid_output_derivative = lambda x: (x * (1 - x))
     
@@ -43,30 +44,36 @@ class neural_network:
     
     def forward_pass(self, X):
         
-        hidden_input= np.dot(X, self.weights_i_h)
+        hidden_input= np.dot(X, self.weights_input_to_hidden)
         hidden_output = self.activation_function(hidden_input)
         
         
         #Output layer
         
-        final_inputs = np.dot(hidden_output, self.weights_h_o)
+        final_inputs = np.dot(hidden_output, self.weights_hidden_to_output)
         final_outputs = self.activation_function(final_inputs)
         
         return final_outputs, hidden_output
     
     def backpropagation(self, final_outputs, hidden_outputs, X, y, delta_weights_i_h, delta_weights_h_o):
         
-        error = y - final_outputs
+        #Output Layer
+        output_error_term = y - final_outputs
+        output_error_delta = output_error_term * self.sigmoid_output_derivative(final_outputs)
+            
+        #Hidden Layer
+        hidden_error_term =  output_error_delta.dot(self.weights_hidden_to_output.T)
+        hidden_error_delta = hidden_error_term* self.sigmoid_output_derivative(hidden_nodes)
         
-        output_error_term = error
-
-        hidden_error_term = output_error_term.dot(self.weights_h_o)
-        hidden_error_delta = hidden_error_term * self.sigmoid_output_derivative(output_error_term)
         
-        delta_weights_h_o += np.dot(hidden_nodes, output_error_delta)
-        delta_weights_i_h += np.dot(self.input_nodes, hidden_error_delta)
+        delta_weights_h_o += hidden_nodes* output_error_delta
+        delta_weights_i_h += self.input_nodes*hidden_error_delta
+        
         
         return delta_weights_i_h, delta_weights_h_o
+    
+    
+    
     
     def update_weights(self,delta_weights_i_h, delta_weights_h_o, n_records ):
         
@@ -74,12 +81,19 @@ class neural_network:
         self.weights_input_to_hidden += delta_weights_i_h * self.learning_rate 
 
 
-    def run(self, featurs):
-        hidden_inputs = self.input_nodes
-        hidden_outputs = np.dot(hidden_inputs, self.weights_input_to_hidden)
+    def run(self, features):
         
-        final_inputs = self.output_nodes
-        final_outputs = np.dot(final_inputs, self.weights_hidden_to_output)
+
+        hidden_inputs = np.dot(features, self.weights_input_to_hidden) 
+        
+        
+        hidden_outputs = self.activation_function(hidden_inputs) 
+        
+
+        
+        final_inputs = np.dot(hidden_outputs, self.weights_hidden_to_output) 
+        final_outputs = final_inputs 
+        
         
         return final_outputs
 
