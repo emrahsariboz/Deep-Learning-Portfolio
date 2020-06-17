@@ -43,7 +43,6 @@ class NeuralNetwork(object):
         #### Implement the forward pass here ####
         ### Forward pass ###
         
-
         hidden_inputs = np.dot(X, self.weights_input_to_hidden) # signals into hidden layer
         hidden_outputs = self.activation_function(hidden_inputs) # signals from hidden layer
 
@@ -80,13 +79,26 @@ class NeuralNetwork(object):
         return delta_weights_i_h, delta_weights_h_o
 
     def update_weights(self, delta_weights_i_h, delta_weights_h_o, n_records):
-
+        ''' Update weights on gradient descent step
+         
+            Arguments
+            ---------
+            delta_weights_i_h: change in weights from input to hidden layers
+            delta_weights_h_o: change in weights from hidden to output layers
+            n_records: number of records
+        '''
         self.weights_hidden_to_output += self.lr*delta_weights_h_o/n_records # update hidden-to-output weights with gradient descent step
         self.weights_input_to_hidden += self.lr*delta_weights_i_h/n_records # update input-to-hidden weights with gradient descent step
 
     def run(self, features):
+        ''' Run a forward pass through the network with input features 
         
-        hidden_inputs =  np.dot(features, self.weights_input_to_hidden)
+            Arguments
+            ---------
+            features: 1D array of feature values
+        '''
+        
+        hidden_inputs =  np.dot(self.input_nodes, self.weights_input_to_hidden)
         hidden_outputs = self.activation_function(hidden_inputs)
         
         final_inputs = np.dot(hidden_outputs, self.weights_hidden_to_output)
