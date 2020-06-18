@@ -17,7 +17,7 @@ class NeuralNetwork(object):
         self.lr = learning_rate
         
         self.activation_function = lambda x : 1/(1 + np.exp(-x))  
-    
+
     
     def train(self, features, targets):
     
@@ -38,6 +38,9 @@ class NeuralNetwork(object):
         '''        
 
         hidden_inputs = np.dot(X, self.weights_input_to_hidden)
+        
+        
+        #Adding non linearity
         hidden_outputs = self.activation_function(hidden_inputs)
 
         final_inputs = np.dot(hidden_outputs, self.weights_hidden_to_output) 
@@ -46,29 +49,38 @@ class NeuralNetwork(object):
         return final_outputs, hidden_outputs
 
     def backpropagation(self, final_outputs, hidden_outputs, X, y, delta_weights_i_h, delta_weights_h_o):
-        ''' Implement backpropagation
+        ''' 
+        Implement backpropagation
+        
         '''
 
         error = y - final_outputs 
         
         output_error = error
+        
+        output_error_delta = output_error 
+        
 
-        hidden_error = np.dot(self.weights_hidden_to_output, output_error) 
+        hidden_error = np.dot(self.weights_hidden_to_output, output_error_delta) 
 
         hidden_error_delta = hidden_error * hidden_outputs * (1 - hidden_outputs)
         
         # Weight step (input to hidden)
         delta_weights_i_h += hidden_error_delta * X[:,None]
         # Weight step (hidden to output)
-        delta_weights_h_o += output_error * hidden_outputs[:,None]
+        delta_weights_h_o += output_error_delta * hidden_outputs[:,None]
         return delta_weights_i_h, delta_weights_h_o
-
+    
+        
     def update_weights(self, delta_weights_i_h, delta_weights_h_o, n_records):
-
-        self.weights_hidden_to_output += self.lr*delta_weights_h_o/n_records 
-        self.weights_input_to_hidden += self.lr*delta_weights_i_h/n_records 
+        
+        #Dividing with n_records because we want to minimuze the learning rate actual learning rate is a quotient self.lr / n_records
+        self.weights_hidden_to_output += self.lr/n_records  * (delta_weights_h_o)
+        self.weights_input_to_hidden  += self.lr/n_records  * (delta_weights_i_h) 
 
     def run(self, features):
+        
+        #used for prediction
         
         hidden_inputs =  np.dot(features, self.weights_input_to_hidden)
         hidden_outputs = self.activation_function(hidden_inputs)
