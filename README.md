@@ -22,12 +22,3 @@ Underfitting is trying to kill a Godzilla with a flyswatter. The problem is you 
 .
 Another good example I saw today was not studying the exam and ultimately failing to be an example of underfitting while memorizing the book word by word rather than studying, is an example of overfitting. Either way, you will fail.
 
-### Solutions for underfitting
-
-#### Regularization 
-
-#### Dropout
-
-## Local Minimum
-
-## 
