@@ -10,10 +10,3 @@ There are two main reasons I created this repository.
 
 At the core, NN takes input and multiplies it with weights to predict an output. 
 
-
-# Perceptron
-
-# Common Problems in Neural Network
-.
-Another good example I saw today ot studying the exam and ultimately failing to be an example of underfitting while memorizing the book word by word rather than studying, is an example of overfitting. Either way, you wi
-
