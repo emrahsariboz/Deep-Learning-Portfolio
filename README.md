@@ -20,6 +20,9 @@ The very first step once the input image is resized to common shape is to pass i
 Using filters, we can filter out irrelevant information or distinguish the object boundaries or other relevant features. 
 
 
+# Autograd
+
+
 
 
 
