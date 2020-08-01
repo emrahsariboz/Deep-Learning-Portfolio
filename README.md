@@ -20,8 +20,16 @@ The very first step once the input image is resized to common shape is to pass i
 Using filters, we can filter out irrelevant information or distinguish the object boundaries or other relevant features. 
 
 
-# Autograd
+# Project
 
+Projects completed by my to fulfill requirements of the Udacity Nanadegree Program
+
+
+<ol>
+<li>Bike Sharing Project</li>
+<li>CNN Dog Breed Classifier [Both from scratch and Transfer Learning] (https://github.com/emrahsariboz/Deep-Learning-Portfolio/tree/master/Bike%20Sharing%20Project) </li>
+
+</ol>
 
 
 
