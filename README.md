@@ -24,9 +24,9 @@ Using filters, we can filter out irrelevant information or distinguish the objec
 
 Projects completed by my to fulfill requirements of the Udacity Nanadegree Program
 
-#### Bike Sharing Project [MLP from scratch](https://github.com/emrahsariboz/Deep-Learning-Portfolio/tree/master/CNN%20Dog%20Breed%20Classifier)
+#### Bike Sharing Project [MLP from scratch](https://github.com/emrahsariboz/Deep-Learning-Portfolio/tree/master/Bike%20Sharing%20Project)
 
-#### CNN Dog Breed Classifier [Both from scratch and Transfer Learning](https://github.com/emrahsariboz/Deep-Learning-Portfolio/tree/master/Bike%20Sharing%20Project)
+#### CNN Dog Breed Classifier [Both from scratch and Transfer Learning](https://github.com/emrahsariboz/Deep-Learning-Portfolio/tree/master/CNN%20Dog%20Breed%20Classifier)
 
 
 
