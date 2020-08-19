@@ -22,7 +22,7 @@ Using filters, we can filter out irrelevant information or distinguish the objec
 
 # Projects
 
-Projects completed by my to fulfill requirements of the Udacity Nanadegree Program
+Projects completed by my mr to fulfill requirements of the Udacity Nanadegree Program
 
 #### Bike Sharing Project [MLP from scratch](https://github.com/emrahsariboz/Deep-Learning-Portfolio/tree/master/Bike%20Sharing%20Project)
 
