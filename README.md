@@ -19,9 +19,7 @@ The very first step once the input image is resized to common shape is to pass i
 
 Using filters, we can filter out irrelevant information or distinguish the object boundaries or other relevant features. 
 
-
 # Projects
-
 Projects completed by my mr to fulfill requirements of the Udacity Nanadegree Program
 
 #### Bike Sharing Project [MLP from scratch](https://github.com/emrahsariboz/Deep-Learning-Portfolio/tree/master/Bike%20Sharing%20Project)
